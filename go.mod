@@ -1,4 +1,4 @@
-module echo-base-logger
+module github.com/modanisatech/echo-base-logger
 
 go 1.14
 
