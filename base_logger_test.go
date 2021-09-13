@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"bytes"
-	"echo-base-logger/config"
+	"github.com/modanisatech/echo-base-logger/config"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
