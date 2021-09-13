@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"echo-base-logger/config"
+	"github.com/modanisatech/echo-base-logger/config"
 	"net/http"
 	"strings"
 	"time"
