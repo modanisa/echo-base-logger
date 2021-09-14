@@ -1,4 +1,4 @@
-package config
+package middleware
 
 import (
 	"fmt"
@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func _init() {
+func _initConfig() {
 	env := os.Getenv("APP_ENV")
 	middleware.DefaultLoggerConfig.Format = fmt.Sprintf(`{"time":"${time_rfc3339_nano}","id":"${id}","remote_ip":"${remote_ip}",`+
 		`"host":"${host}","method":"${method}","uri":"${uri}","user_agent":"${user_agent}",`+
@@ -24,14 +24,14 @@ func _init() {
 }
 
 func TestNewLoggerConfig(t *testing.T) {
-	_init()
+	_initConfig()
 	conf := NewLoggerConfig(&middleware.DefaultLoggerConfig)
 
 	assert.NotNil(t, conf)
 }
 
 func TestShouldReturnNonReplacedLogContentIfContextNotSet_DefaultLogger(t *testing.T) {
-	_init()
+	_initConfig()
 	conf := NewLoggerConfig(&middleware.DefaultLoggerConfig)
 
 	logContent, err := conf.DefaultLogger(time.Now())
@@ -43,7 +43,7 @@ func TestShouldReturnNonReplacedLogContentIfContextNotSet_DefaultLogger(t *testi
 }
 
 func TestLoggerConfig_DefaultLogger(t *testing.T) {
-	_init()
+	_initConfig()
 	e := echo.New()
 
 	req := httptest.NewRequest(echo.GET, "/context-has-been-set", nil)
